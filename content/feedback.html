@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ModusShop — Зворотній зв’язок</title>
+  </head>
+  <body>
+    <header>
+      <h1>Зворотній зв’язок</h1>
+    </header>
+
+    <main>
+      <form>
+        <fieldset>
+          <legend>Персональна інформація</legend>
+          <label
+            >Прізвище та ім’я:
+            <input type="text" name="fullname" required /></label
+          ><br /><br />
+          <label>E-mail: <input type="email" name="email" required /></label
+          ><br /><br />
+          <label
+            >Вік:
+            <input type="number" name="age" min="1" max="120" required /></label
+          ><br /><br />
+          <label
+            >Освіта:
+            <select name="education" required>
+              <option value="повна">Повна</option>
+              <option value="неповна">Неповна</option>
+              <option value="вища">Вища</option>
+              <option value="професійна">Професійна</option>
+            </select>
+          </label>
+        </fieldset>
+        <br />
+
+        <label
+          >Мета зворотнього зв’язку:
+          <select name="purpose">
+            <option>Співпраця</option>
+            <option>Скарга на порушення права власності</option>
+            <option>Пропозиція</option>
+            <option>Наявність помилки</option>
+          </select> </label
+        ><br /><br />
+
+        <label
+          >Детально:<br />
+          <textarea
+            name="details"
+            rows="5"
+            cols="40"
+            maxlength="300"
+          ></textarea></label
+        ><br /><br />
+
+        <label
+          ><input type="checkbox" required /> Даю згоду на обробку даних</label
+        ><br /><br />
+
+        <button type="submit">Відправити</button>
+        <button type="reset">Очистити</button>
+      </form>
+    </main>
+
+    <footer>
+      <p><a href="index.html">На головну</a></p>
+    </footer>
+  </body>
+</html>
