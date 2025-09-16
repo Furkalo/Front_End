@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ModusShop — Зворотній зв’язок</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      /* Flex-контейнер для форми */
+      main {
+        padding: 16px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center; 
+        align-items: flex-start; 
+        align-content: flex-start; 
+        gap: 16px;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        border: 1px solid var(--brand-dark);
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        min-width: 300px;
+        max-width: 520px;
+        background: #fff;
+      }
+      fieldset { display: flex; flex-direction: column; gap: 8px; border-color: var(--brand-dark); }
+      label { display: flex; flex-direction: column; gap: 4px; }
+      input, select, textarea { padding: 6px 8px; border-radius: 4px; border: 1px solid #ccc; }
+
+      /* Порядок елементів (order), зростання/стискання (flex-grow/flex-shrink) */
+      fieldset { order: 1; }
+      label[for="purpose"], select[name="purpose"] { order: 2; }
+      textarea[name="details"] { order: 3; flex-grow: 1; flex-shrink: 1; min-height: 120px; }
+      label input[type="checkbox"] { accent-color: var(--brand-dark); }
+      .actions { order: 4; display: flex; gap: 8px; justify-content: flex-end; }
+      button { background: var(--brand-accent); color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; }
+      button:hover { filter: brightness(0.95); }
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Зворотній зв’язок</h1>
+    </header>
+
+    <main>
+      <form>
+        <fieldset>
+          <legend>Персональна інформація</legend>
+          <label
+            >Прізвище та ім’я:
+            <input type="text" name="fullname" required /></label
+          ><br /><br />
+          <label>E-mail: <input type="email" name="email" required /></label
+          ><br /><br />
+          <label
+            >Вік:
+            <input type="number" name="age" min="1" max="120" required /></label
+          ><br /><br />
+          <label
+            >Освіта:
+            <select name="education" required>
+              <option value="повна">Повна</option>
+              <option value="неповна">Неповна</option>
+              <option value="вища">Вища</option>
+              <option value="професійна">Професійна</option>
+            </select>
+          </label>
+        </fieldset>
+        <br />
+
+        <label for="purpose">Мета зворотнього зв’язку:</label>
+        <select name="purpose" id="purpose">
+          <option>Співпраця</option>
+          <option>Скарга на порушення права власності</option>
+          <option>Пропозиція</option>
+          <option>Наявність помилки</option>
+        </select>
+        <br />
+
+        <label
+          >Детально:<br />
+          <textarea
+            name="details"
+            rows="5"
+            cols="40"
+            maxlength="300"
+          ></textarea></label
+        ><br /><br />
+
+        <label><input type="checkbox" required /> Даю згоду на обробку даних</label>
+        <br />
+
+        <div class="actions">
+          <button type="submit">Відправити</button>
+          <button type="reset" style="background: #888;">Очистити</button>
+        </div>
+      </form>
+    </main>
+
+    <footer>
+      <p><a href="./index.html">На головну</a></p>
+    </footer>
+  </body>
+</html>
