@@ -14,10 +14,14 @@
         background: #ffffffcc;
         backdrop-filter: blur(2px);
         padding: 8px 12px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         z-index: 10;
       }
-      main { padding-top: 80px; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+      main {
+        padding-top: 80px;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+      }
 
       /* Карточки товарів у рамці темно-зеленого кольору з тінню всередину */
       .product {
@@ -39,21 +43,50 @@
         margin: 0 0 8px 0;
       }
       .product p,
-      .product li { font-weight: 400; line-height: 1.2; }
+      .product li {
+        font-weight: 400;
+        line-height: 1.2;
+      }
 
-      /* Анімація фото: імітація старовинного зображення при наведенні */
       .product img {
-        transition: filter 400ms ease, transform 400ms ease, box-shadow 400ms ease;
+        transition: all 0.3s ease;
         display: block;
       }
+
       .product img:hover {
-        animation: antiqueTone 1.2s ease-in-out infinite alternate;
         transform: scale(0.98);
-        box-shadow: inset 0 0 0 9999px rgba(0,0,0,0.02);
+        box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.02);
+        animation: superName 1.5s ease-in-out infinite alternate;
+        filter: sepia(0.4) contrast(1.2) brightness(0.9) grayscale(0.2);
+      }
+
+      @keyframes superName {
+        0% {
+          filter: sepia(0.4) contrast(1.2) brightness(0.9) grayscale(0.2);
+          transform: scale(0.98) rotate(0deg);
+        }
+        25% {
+          filter: sepia(0.5) contrast(1.15) brightness(0.88) grayscale(0.3);
+          transform: scale(0.985) rotate(-0.5deg);
+        }
+        50% {
+          filter: sepia(0.45) contrast(1.2) brightness(0.9) grayscale(0.25);
+          transform: scale(0.98) rotate(0.3deg);
+        }
+        75% {
+          filter: sepia(0.5) contrast(1.18) brightness(0.87) grayscale(0.3);
+          transform: scale(0.985) rotate(-0.2deg);
+        }
+        100% {
+          filter: sepia(0.4) contrast(1.2) brightness(0.9) grayscale(0.2);
+          transform: scale(0.98) rotate(0deg);
+        }
       }
 
       /* Вже відвідані посилання: темно-зелений */
-      a:visited { color: #0b572f; }
+      a:visited {
+        color: #0b572f;
+      }
     </style>
   </head>
   <body>
@@ -69,7 +102,7 @@
     </header>
 
     <main class="grid">
-      <h2 style="grid-column: 1 / -1;">Каталог товарів</h2>
+      <h2 style="grid-column: 1 / -1">Каталог товарів</h2>
 
       <div class="product lift-on-hover">
         <h3><a href="./product-x.html">Смартфон X</a></h3>
@@ -92,7 +125,9 @@
 
       <div class="product lift-on-hover">
         <h3><a href="./product-y.html">Смартфон Y</a></h3>
-        <a href="./product-y.html"><img src="../image/images.jfif" alt="Смартфон Y" width="150" /></a>
+        <a href="./product-y.html"
+          ><img src="../image/images.jfif" alt="Смартфон Y" width="150"
+        /></a>
         <p>Країна: Корея</p>
         <ul>
           <li>Екран: 6.1"</li>
@@ -105,7 +140,9 @@
 
       <div class="product lift-on-hover">
         <h3><a href="./product-table.html">Кухонний стіл</a></h3>
-        <a href="./product-table.html"><img src="../image/1114.800.jpg" alt="Кухонний стіл" width="150" /></a>
+        <a href="./product-table.html"
+          ><img src="../image/1114.800.jpg" alt="Кухонний стіл" width="150"
+        /></a>
         <p>Країна: Польща</p>
         <ul>
           <li>Матеріал: дерево/МДФ</li>
@@ -116,7 +153,9 @@
         </ul>
       </div>
 
-      <p style="grid-column: 1 / -1;"><a href="./index.html">Повернутись на головну</a></p>
+      <p style="grid-column: 1 / -1">
+        <a href="./index.html">Повернутись на головну</a>
+      </p>
     </main>
   </body>
 </html>
