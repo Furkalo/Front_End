@@ -5,58 +5,138 @@
     <title>ModusShop — Головна</title>
     <link rel="stylesheet" href="./styles.css" />
     <style>
-      /* Назва магазину та логотип: абсолютне позиціонування з нульовим відступом зверху */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        background: #f5f5f5;
+      }
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        width: 100%;
+        max-width: 960px;
+        flex-direction: column;
+        align-items: center;
+      }
+
       header {
+        width: 100%;
         position: relative;
         min-height: 80px;
-        padding-top: 80px;
+        padding-top: 60px;
+        margin-top: 200px;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 2; /* щоб меню і бренд були вище */
       }
       header .brand {
-        position: absolute; /*1 умова виконана*/
+        position: absolute;
         top: 0;
         left: 0;
         margin: 0;
         display: flex;
         align-items: center;
         gap: 8px;
+        padding: 8px 16px;
+        z-index: 3;
+      }
+      nav {
+        position: sticky;
+        top: 48px;
+        z-index: 3;
+        background: #fff;
+        padding: 6px 0;
+        text-align: center;
       }
 
-      /* 2 задача блок з описанням мети: більші зовнішні відступи ніж внутрішні */
+      /* Шар для анімованих зображень — тепер на весь екран */
+      .falling-layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .falling-item {
+        position: absolute;
+        top: -50px;
+        will-change: transform;
+        filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.15));
+        user-select: none;
+      }
+      @keyframes fallDownSoft {
+        0% {
+          transform: translateY(0) rotate(var(--rot, 0deg));
+          opacity: 0;
+        }
+        5% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(120vh) rotate(var(--rot, 0deg));
+          opacity: 0.9;
+        }
+      }
+
+      header button {
+        margin: 4px;
+      }
+
       .goal-block {
         margin: 24px;
-        padding: 8px;
+        padding: 12px;
         border: 1px dashed #ccc;
-        max-height: 120px; /* overflow для найбільш текстового блоку */
+        max-height: 120px;
         overflow: auto;
+        width: 100%;
       }
       .goal-emoji {
         font-size: 24px;
         margin: 8px 24px 0 24px;
+        text-align: center;
       }
 
-      /* 3 задача Таблиця (загальна інформація): при наведенні зсувається вгору на 2% висоти */
       .info-table {
         transition: transform 200ms ease;
-        display: inline-block;
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 24px;
       }
       .info-table:hover {
         transform: translateY(-2%);
       }
+      .info-table th,
+      .info-table td {
+        padding: 6px 12px;
+        border: 1px solid #aaa;
+      }
 
-      /* 4 задача Виділення адреси/телефонів: JS додасть клас через 2с після виділення */
       #contacts.enhanced {
         background: #f0f6ee;
         font-size: 110%;
         transition: all 200ms ease;
       }
 
-      /* косметичні  вешн правки */
-      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-      main { max-width: 900px; }
-      nav { position: sticky; top: 48px; z-index: 2; background: #fff; padding: 6px 0; }
-      /* Демонстрація float та z-index */
-      .intro-illustration { float: right; margin: 8px 0 8px 16px; z-index: 1; position: relative; }
+      main {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+        padding: 0 16px;
+        z-index: 2;
+      }
 
+      footer {
+        text-align: center;
+        margin: 24px 0;
+      }
     </style>
   </head>
   <body>
@@ -67,15 +147,14 @@
           alt="Логотип магазину"
           width="40"
         />
-        ModusShop
+        <span class="brand-text" aria-label="Назва магазину">ModusShop</span>
       </h1>
+      <div class="falling-layer" aria-hidden="true"></div>
       <nav>
         <a href="./catalog.html">Каталог</a> |
         <a href="./reviews.html">Відгуки про товар</a> |
         <a href="./feedback.html">Зворотній зв’язок</a>
       </nav>
-      <button>Перейти у власний кабінет</button>
-      <button>Зареєструватись</button>
     </header>
 
     <main>
@@ -90,53 +169,55 @@
         </ol>
       </section>
 
-      <h2>Загальна інформація про товари</h2>
-      <table class="info-table lift-on-hover" border="1">
-        <caption>
-          Типи товарів
-        </caption>
-        <thead>
-          <tr>
-            <th>Категорія</th>
-            <th>Приклад</th>
-            <th>Країна</th>
-            <th>Ціна</th>
-            <th>Наявність</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td rowspan="2">Телефони</td>
-            <td>Смартфон X</td>
-            <td>Китай</td>
-            <td>9000₴</td>
-            <td>Є</td>
-          </tr>
-          <tr>
-            <td>Смартфон Y</td>
-            <td>Корея</td>
-            <td>11000₴</td>
-            <td>Є</td>
-          </tr>
-          <tr>
-            <td>Меблі</td>
-            <td colspan="2">Кухонний стіл</td>
-            <td>3500₴</td>
-            <td>Замовлення</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="5">Оновлено: 11.09.2025</td>
-          </tr>
-        </tfoot>
-      </table>
+      <section>
+        <h2>Загальна інформація про товари</h2>
+        <table class="info-table lift-on-hover">
+          <caption>
+            Типи товарів
+          </caption>
+          <thead>
+            <tr>
+              <th>Категорія</th>
+              <th>Приклад</th>
+              <th>Країна</th>
+              <th>Ціна</th>
+              <th>Наявність</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="2">Телефони</td>
+              <td>Смартфон X</td>
+              <td>Китай</td>
+              <td>9000₴</td>
+              <td>Є</td>
+            </tr>
+            <tr>
+              <td>Смартфон Y</td>
+              <td>Корея</td>
+              <td>11000₴</td>
+              <td>Є</td>
+            </tr>
+            <tr>
+              <td>Меблі</td>
+              <td colspan="2">Кухонний стіл</td>
+              <td>3500₴</td>
+              <td>Замовлення</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">Оновлено: 11.09.2025</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
 
       <p>
-        <span
-          >У нашому магазині <i>стильні</i>, <b>якісні</b>,
-          <em>надійні</em> товари <u>для кожного</u>.</span
-        >
+        <span>
+          У нашому магазині <i>стильні</i>, <b>якісні</b>,
+          <em>надійні</em> товари <u>для кожного</u>.
+        </span>
       </p>
     </main>
 
@@ -146,38 +227,9 @@
         Тел: +380441234567
       </p>
     </footer>
-    <script>
-      // Підсилення виділеного тексту адреси/телефонів через 2 секунди
-      (function () {
-        var contacts = document.getElementById('contacts');
-        var enhanceTimer = null;
-        function within(node, ancestor) {
-          while (node) {
-            if (node === ancestor) return true;
-            node = node.parentNode;
-          }
-          return false;
-        }
-        document.addEventListener('selectionchange', function () {
-          var sel = window.getSelection();
-          if (!sel || sel.isCollapsed) return;
-          var anchorNode = sel.anchorNode;
-          var focusNode = sel.focusNode;
-          if (within(anchorNode, contacts) || within(focusNode, contacts)) {
-            clearTimeout(enhanceTimer);
-            enhanceTimer = setTimeout(function () {
-              contacts.classList.add('enhanced');
-            }, 2000);
-          }
-        });
-        // При знятті виділення прибираємо підсилення з невеликою затримкою
-        document.addEventListener('mouseup', function () {
-          setTimeout(function () { contacts.classList.remove('enhanced'); }, 800);
-        });
-        document.addEventListener('keyup', function (e) {
-          if (e.key === 'Escape') contacts.classList.remove('enhanced');
-        });
-      })();
-    </script>
+
+    <script src="./js/contacts.js"></script>
+    <script src="./js/nav-responsive.js"></script>
+    <script src="./js/falling-images.js"></script>
   </body>
 </html>
